@@ -1,6 +1,8 @@
 <?php
 
 //use Illuminate\Http\Request;
+
+use App\Http\Controllers\Page;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,30 +19,19 @@ use Illuminate\Support\Facades\Route;
             return view('welcome');
         });*/
 
-        Route::get('/', function () {
-            return view('home');
-        })->name('home');
+        /*//Sin agrupar la route
+        Route::get('/', [Page::class,'home'])->name('home');
+        Route::get('/gato', [Page::class,'gato'])->name('gato');
+        Route::get('/gato/{gatos}', [Page::class,'gatos'])->name('gatos');*/
 
-        Route::get('/gato', function () {
-            //consulta a la base de datos
+        //Agrupando routes
+        Route::controller(Page::class)->group(function (){
+            Route::get('/', 'home')->name('home');
+            Route::get('/gato', 'gato')->name('gato');
+            Route::get('/gato/{gatos}', 'gatos')->name('gatos');
+        });
 
-            //array multidimensiona $array= [[],[]];
-            $posts = [
-                ['id'=>1 ,'name'=>'cassie','gatos'=>'cassie','caracteristica'=>'La mama'],
-                ['id'=>2 ,'name'=>'afrodita','gatos'=>'afrodita','caracteristica'=>'el mas pequeño'],
-                ['id'=>3 ,'name'=>'albafica','gatos'=>'albafica','caracteristica'=>'el mas grande'],
-                ['id'=>4 ,'name'=>'mimi','gatos'=>'mimi','caracteristica'=>'la mas cariñosa'],
-            ];
-
-            //No se aplica compact debio a que es un array -> compact($posts)
-            return view('gato', ["posts"=>$posts]);
-        })->name('gato');
-
-        Route::get('/gato/{gatos}', function ($gatos) {
-                $post =$gatos;
-                return view('gatos',['post'=>$post]);
-        })->name('gatos');
-
+        // ¿Por que no se puede aplicar compact para asignar su variable?
 
         /*Route::get('buscar', function (Request $request) {
             return $request->all();
