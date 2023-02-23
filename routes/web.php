@@ -13,33 +13,37 @@ use Illuminate\Support\Facades\Route;
 |Route::delete -> Eliminar
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+        /*Route::get('/', function () {
+            return view('welcome');
+        });*/
 
-Route::get('/gato', function () {
-    //consulta a la base de datos
+        Route::get('/', function () {
+            return view('home');
+        })->name('home');
 
-    //array multidimensiona $array= [[],[]];
-    $posts = [
-        ['id'=>1 ,'name'=>'Cassie','edad'=>2],
-        ['id'=>2 ,'name'=>'Afrodita','edad'=>1],
-        ['id'=>3 ,'name'=>'Albafica','edad'=>1],
-        ['id'=>4 ,'name'=>'Mimi','edad'=>1]
-    ];
+        Route::get('/gato', function () {
+            //consulta a la base de datos
 
-    //No se aplica compact debio a que es un array -> compact($posts)
-    return view('gato', ["posts"=>$posts]);
-});
+            //array multidimensiona $array= [[],[]];
+            $posts = [
+                ['id'=>1 ,'name'=>'cassie','gatos'=>'cassie','caracteristica'=>'La mama'],
+                ['id'=>2 ,'name'=>'afrodita','gatos'=>'afrodita','caracteristica'=>'el mas pequeño'],
+                ['id'=>3 ,'name'=>'albafica','gatos'=>'albafica','caracteristica'=>'el mas grande'],
+                ['id'=>4 ,'name'=>'mimi','gatos'=>'mimi','caracteristica'=>'la mas cariñosa'],
+            ];
 
-Route::get('/gato/{gatos}', function ($gatos) {
-        $post =$gatos;
+            //No se aplica compact debio a que es un array -> compact($posts)
+            return view('gato', ["posts"=>$posts]);
+        })->name('gato');
 
-    return view('gatos',['post'=>$post]);
-});
+        Route::get('/gato/{gatos}', function ($gatos) {
+                $post =$gatos;
+                return view('gatos',['post'=>$post]);
+        })->name('gatos');
 
-/*Route::get('buscar', function (Request $request) {
-    return $request->all();
-});
 
-//buscar?query=afrodita */
+        /*Route::get('buscar', function (Request $request) {
+            return $request->all();
+        });
+
+        //buscar?query=afrodita */
