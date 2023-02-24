@@ -17,10 +17,13 @@ class CatsFactory extends Factory
      */
     public function definition()
     {
+
+        //https://fakerphp.github.io/formatters/
         return [
-            'name'=> fake()->name,
+            'name'=> fake()->randomElement(['mimi','alabafica','afrodita','cassie']),
             'caracteristica'=> fake()->text(20),
-            'gatos'=>fake()->randomElement(['mimi','alabafica','afrodita','casie']),
+            'edad'=>fake()->randomDigit(),
+            'gatos'=>fake()->randomElement(['mimi','alabafica','afrodita','cassie']),
         ];
     }
 }

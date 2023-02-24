@@ -2,7 +2,7 @@
 
 //use Illuminate\Http\Request;
 
-use App\Http\Controllers\Page;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +25,11 @@ use Illuminate\Support\Facades\Route;
         Route::get('/gato/{gatos}', [Page::class,'gatos'])->name('gatos');*/
 
         //Agrupando routes
-        Route::controller(Page::class)->group(function (){
+        Route::controller(PageController::class)->group(function (){
             Route::get('/', 'home')->name('home');
             Route::get('/gato', 'gato')->name('gato');
-            Route::get('/gato/{gatos}', 'gatos')->name('gatos');
+            //propiedad del que esta en el controller (Cats $gatos)
+            Route::get('/gato/{gatos:gatos}', 'gatos')->name('gatos');
         });
 
         // ¿Por que no se puede aplicar compact para asignar su variable?

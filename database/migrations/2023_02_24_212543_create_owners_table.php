@@ -11,17 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-
-     /** El ORM de PHP es Eloquent */
-
     public function up()
     {
-        Schema::create('cats', function (Blueprint $table) {
+        Schema::create('owners', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('gatos');
-            $table->integer('edad');
-            $table->string('caracteristica');
+            $table->string('owner');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cats');
+        Schema::dropIfExists('owners');
     }
 };

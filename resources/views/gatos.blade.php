@@ -1,21 +1,30 @@
 @extends('template')
 
     @section('content')
+
         <h1> Gatitos traviesos</h1>
 
+        <h2>
+            <strong>  Gato :{{ $gatos->gatos }}</strong>
+            <br>
+            <strong>    Id :{{ $gatos->id }}</strong>
+        </h2>
         <h3>
             <strong>
-                {{ $post }}
+                Edad del gato:  {{ $gatos ->edad }}
             </strong>
+            <!-- Las variables ya se asignan sin corchetes-->
+                @if ($gatos->edad === 1)
+                    <p>comida para gatitos</p>
+                @else
+                    <p>comida para gatotes</p>
+                @endif
+
         </h3>
 
-            @if ($post === 'afrodita' || $post === 'albafica' || $post === 'mimi')
-                <br>
-                <strong> Edad :1 </strong>
-            @elseif ($post === 'cassie')
-                <strong> Edad : 2 </strong>
-            @else
-                <strong> no se :C </strong>
-            @endif
+        <h4>
+            Descripcion :{{  $gatos->caracteristica }}
+        </h4>
+
     @endsection
 
