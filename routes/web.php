@@ -1,41 +1,23 @@
 <?php
 
-//use Illuminate\Http\Request;
-
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|Route::get -> Consultar
-|Route::post-> Guardar
-|Route::put -> Actualizar
-|Route::delete -> Eliminar
-*/
-
-        /*Route::get('/', function () {
-            return view('welcome');
-        });*/
-
-        /*//Sin agrupar la route
-        Route::get('/', [Page::class,'home'])->name('home');
-        Route::get('/gato', [Page::class,'gato'])->name('gato');
-        Route::get('/gato/{gatos}', [Page::class,'gatos'])->name('gatos');*/
-
-        //Agrupando routes
         Route::controller(PageController::class)->group(function (){
             Route::get('/', 'home')->name('home');
             Route::get('/gato', 'gato')->name('gato');
-            //propiedad del que esta en el controller (Cats $gatos)
             Route::get('/gato/{gatos:gatos}', 'gatos')->name('gatos');
         });
 
-        // ¿Por que no se puede aplicar compact para asignar su variable?
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->middleware(['auth', 'verified'])->name('dashboard');
 
-        /*Route::get('buscar', function (Request $request) {
-            return $request->all();
+        Route::middleware('auth')->group(function () {
+            Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
 
-        //buscar?query=afrodita */
+require __DIR__.'/auth.php';

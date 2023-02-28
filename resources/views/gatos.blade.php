@@ -14,7 +14,7 @@
                 Edad del gato:  {{ $gatos ->edad }}
             </strong>
             <!-- Las variables ya se asignan sin corchetes-->
-                @if ($gatos->edad === 1)
+                @if ($gatos->edad <= 1)
                     <p>comida para gatitos</p>
                 @else
                     <p>comida para gatotes</p>

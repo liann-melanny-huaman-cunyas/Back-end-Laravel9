@@ -13,7 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  *  AirTrafficControllermodelo almacenaría air_traffic_controllerstabla
  * */
 
-class Cats extends Model
+class Cat extends Model
+//El nombre de los modelos es en singular
+
 {
     use HasFactory;
+
+    /*public function user(){
+        return $this->belongsTo(User::class);
+    }*/
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

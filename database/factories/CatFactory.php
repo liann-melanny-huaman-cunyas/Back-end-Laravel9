@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CatsFactory extends Factory
+class CatFactory extends Factory
+//El nombre de los factory es en singular
+
 {
     /**
      * Define the model's default state.
@@ -20,10 +22,12 @@ class CatsFactory extends Factory
 
         //https://fakerphp.github.io/formatters/
         return [
-            'name'=> fake()->randomElement(['mimi','alabafica','afrodita','cassie']),
+            'user_id' =>1,
+            'name'=> fake()->name($gender = 'male'|'female') ,
             'caracteristica'=> fake()->text(20),
             'edad'=>fake()->randomDigit(),
-            'gatos'=>fake()->randomElement(['mimi','alabafica','afrodita','cassie']),
+            //'gatos'=>fake()->randomElement(['mimi','albafica','afrodita','cassie']),
+            'gatos'=>fake()->name(),
         ];
     }
 }

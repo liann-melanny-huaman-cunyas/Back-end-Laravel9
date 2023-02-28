@@ -18,6 +18,17 @@ return new class extends Migration
     {
         Schema::create('cats', function (Blueprint $table) {
             $table->id();
+
+            //$table->unsignedBigInteger('use_id');
+
+            //son lo mismo
+            //$table->foreign('use_id')->references('id')->on('users');
+            //$table->foreignId('user_id')->constrained();
+            //$table->foreignId('use_id')->constrained('users');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('name');
             $table->string('gatos');
             $table->integer('edad');

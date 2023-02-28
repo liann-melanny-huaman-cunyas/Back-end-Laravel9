@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 //AGREGAR EL MODELO
 
-use App\Models\Cats;
+use App\Models\Cat;
 
 //Illuminate es para clases propias de laravel
 use Illuminate\Http\Request;
 
 class PageController extends Controller
+//El nombre de los controller es en singular
 {
     public function home()
         {
@@ -18,17 +19,13 @@ class PageController extends Controller
 
     public function gato()
         {
-            $posts =Cats::get();
-            //$primer=Cats::first();
-            //$primer=Cats::find(25);
-            //dd($primer);
-
-
+            // metodo first() para que se ordene desde 1
+            $posts = Cat::latest('id')->first()->paginate();
             return view('gato', compact('posts'));
         }
 
     //hacer referencia al model
-    public function gatos(Cats $gatos)
+    public function gatos(Cat $gatos)
         {
             return view('gatos',compact('gatos'));
         }

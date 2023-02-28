@@ -1,9 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Cats;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cat;
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,13 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(1)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        /* \App\Models\User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com', ]);*/
 
-        Cats::factory(50)->create();
+        Cat::factory(50)->create();
     }
 }
