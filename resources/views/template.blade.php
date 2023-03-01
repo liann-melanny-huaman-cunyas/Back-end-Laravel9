@@ -15,7 +15,7 @@
         @auth
         <a href="{{ route ('dashboard') }}">Dashboard</a>
             @else
-        <a href="{{ route('login') }}">Login</a>
+        <a href="{{ route('login') }}">Loginm</a>
         @endauth
     </header>
 
