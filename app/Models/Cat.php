@@ -23,6 +23,13 @@ class Cat extends Model
         return $this->belongsTo(User::class);
     }*/
 
+    protected $fillable =[
+        'name',
+        'gatos',
+        'edad',
+        'caracteristica'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

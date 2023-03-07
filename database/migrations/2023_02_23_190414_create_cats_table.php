@@ -26,14 +26,16 @@ return new class extends Migration
             //$table->foreignId('user_id')->constrained();
             //$table->foreignId('use_id')->constrained('users');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
             $table->string('name');
             $table->string('gatos');
             $table->integer('edad');
             $table->string('caracteristica');
             $table->timestamps();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+
         });
     }
 
