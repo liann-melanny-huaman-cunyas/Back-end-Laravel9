@@ -23,6 +23,19 @@ class CatController extends Controller
 
     public function store(Request $request){
 
+        $request-> validate([
+            'name'          =>'required',
+            'gatos'         =>'required',
+            'edad'          =>'required',
+            /*     'slug' => ['required',Rule::unique('basededatos', 'slug')->ignore($parametro->id)]*/
+            'caracteristica'=>'required',
+        ],[
+            'name.required'=>'Indique su nombre',
+            'gatos.required'=>'Indique la edad de su gato',
+            'edad.required'=>'Indique la edad de su gato',
+            'caracteristica.required'=>'Se necesita caracteristicas del gato',
+        ]);
+
         $cat=$request->user()->cats()->create([
                 'name'          =>$request->name,
                 'gatos'         =>$request->gatos,
@@ -41,6 +54,14 @@ class CatController extends Controller
     //Editar
     public function update(Request $request,Cat $cat){
 
+        $request-> validate([
+            'name'          =>'required',
+            'gatos'         =>'required',
+            'edad'          =>'required',
+            'caracteristica'=>'required',
+        ]);
+
+        //cambia el update
         $cat->update([
                 'name'          =>$request->name,
                 'gatos'         =>$request->gatos,
