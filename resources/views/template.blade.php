@@ -26,7 +26,22 @@
             @endauth
 
         </header>
-        @yield('content')
+		<div class="opacity-60 h-px mb-8" style="
+			background: linear-gradient(to right, 
+				rgba(141, 121, 121, 0) 0%,
+				rgb(242, 131, 131) 30%,
+				rgb(242, 131, 131) 70%,
+				rgba(141, 121, 121 ,0) 100%
+			);
+		">
+
+		</div>
+
+		@yield('content')
+
+		<p class="py-16">
+			<img src="{{ asset('image/black-cat.png') }}" class="h-12 mx-auto">
+		</p>
     </div>
 
 </body>
