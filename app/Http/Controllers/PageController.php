@@ -12,17 +12,17 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 //El nombre de los controller es en singular
 {
-    public function home()
+    public function home(Request $request)
         {
-            return view('home');
+
+            $search = $request->search;
+
+            $posts = Cat::where('gatos', 'LIKE', "%{$search}%")
+                ->latest('id')->paginate();
+
+            return view('home', compact('posts'));
         }
 
-    public function gato()
-        {
-            // metodo first() para que se ordene desde 1
-            $posts = Cat::latest('id')->first()->paginate();
-            return view('gato', compact('posts'));
-        }
 
     //hacer referencia al model
     public function gatos(Cat $gatos)
